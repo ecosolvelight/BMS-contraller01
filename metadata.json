@@ -1,0 +1,5 @@
+{
+  "name": "BMS Monitor Pro",
+  "description": "Professional Battery Management monitoring for ESP32 units. Feature-rich analytics and monthly usage tracking. PWA Ready.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,23 @@
+{
+  "name": "BMS Monitor Pro",
+  "short_name": "BMS Pro",
+  "description": "Professional Battery Management monitoring for ESP32 units.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3103/3103305.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3103/3103305.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
