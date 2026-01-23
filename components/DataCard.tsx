@@ -13,7 +13,8 @@ const DataCard: React.FC<DataCardProps> = ({ label, value, unit, icon, color }) 
     <div className="bg-white rounded-[40px] p-8 flex flex-col items-start gap-5 shadow-xl shadow-slate-200/40 border border-white transition-all hover:-translate-y-1 active:scale-95 group overflow-hidden relative">
       <div className="absolute top-0 right-0 w-20 h-20 -mr-10 -mt-10 rounded-full transition-transform group-hover:scale-150 opacity-10" style={{ backgroundColor: color }}></div>
       
-      <div className="w-14 h-14 rounded-3xl flex items-center justify-center text-xl shadow-lg transition-transform group-hover:rotate-12" style={{ backgroundColor: `${color}15`, color: color, shadowColor: color }}>
+      {/* Removed invalid 'shadowColor' property which is not a valid CSS property in React's CSSProperties */}
+      <div className="w-14 h-14 rounded-3xl flex items-center justify-center text-xl shadow-lg transition-transform group-hover:rotate-12" style={{ backgroundColor: `${color}15`, color: color }}>
         {icon}
       </div>
       
