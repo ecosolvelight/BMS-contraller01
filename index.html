@@ -16,7 +16,7 @@
   <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3103/3103305.png">
   <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3103/3103305.png">
   
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="/manifest.json">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;700&family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -174,11 +174,10 @@
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
   
-  <!-- Basic Service Worker for PWA Installability -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js').then(reg => {
+        navigator.serviceWorker.register('/sw.js').then(reg => {
           console.log('SW Registered');
         }).catch(err => {
           console.log('SW Registration failed: ', err);
@@ -189,11 +188,11 @@
 <script type="importmap">
 {
   "imports": {
-    "vite": "https://esm.sh/vite@^7.3.1",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
-    "react/": "https://esm.sh/react@^19.2.3/",
     "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
   }
 }
 </script>
@@ -206,7 +205,7 @@
   </div>
   <div id="root"></div>
   
-  <!-- Critical: Added entry point script tag so Vite can bundle and execute the application -->
+  <!-- Entry point for the React application -->
   <script type="module" src="/index.tsx"></script>
 </body>
 </html>
