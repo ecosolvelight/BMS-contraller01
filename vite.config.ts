@@ -4,9 +4,10 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/',
+  base: './', // Using relative base can sometimes help with directory resolution on static hosts
   build: {
     outDir: 'dist',
-    minify: 'terser',
+    assetsDir: 'assets',
+    emptyOutDir: true
   }
 });
