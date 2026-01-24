@@ -1,8 +1,7 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
-import { getDatabase, ref, onValue, off } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js';
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, onValue, off } from 'firebase/database';
 import { BMSData } from '../types';
 
-// Using provided credentials from user context if available, otherwise using placeholder
 const firebaseConfig = {
   apiKey: "AIzaSyAs-Placeholder",
   authDomain: "bms-contrall-application.firebaseapp.com",
