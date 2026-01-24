@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, onValue, off } from 'firebase/database';
 import { BMSData } from '../types';
 
+// These should be replaced with your actual Firebase config keys if needed
 const firebaseConfig = {
   apiKey: "AIzaSyAs-Placeholder",
   authDomain: "bms-contrall-application.firebaseapp.com",
