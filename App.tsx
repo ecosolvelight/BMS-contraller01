@@ -36,11 +36,12 @@ const FloatingHexagons = () => {
             opacity: h.opacity,
             animationDuration: `${h.duration}s`,
             animationDelay: `${h.delay}s`,
+            position: 'absolute',
             filter: `drop-shadow(0 0 ${h.size / 6}px ${h.color})`,
             transform: `rotate(${h.rotation}deg)`,
           }}
         >
-          <path d="M30 0l25.98 15v30L30 60 4.02 45V15z" stroke="currentColor" />
+          <path d="M30 0l25.98 15v30L30 60 4.02 45V15z" stroke="currentColor" fill="none" />
         </svg>
       ))}
     </div>
@@ -114,7 +115,6 @@ const App: React.FC = () => {
       const deltaHours = (now - lastUpdateRef.current) / (1000 * 60 * 60);
       lastUpdateRef.current = now;
       
-      // Calculate energy: Watts = Voltage * Current
       const watts = data.voltage * data.current;
       const deltaWh = Math.abs(watts * deltaHours);
       
@@ -198,7 +198,7 @@ const App: React.FC = () => {
 
   if (view === 'home') {
     return (
-      <div className="h-full w-full bg-black relative flex flex-col items-center justify-center view-entry overflow-hidden safe-top safe-bottom">
+      <div className="h-full w-full bg-black relative flex flex-col items-center justify-between view-entry overflow-hidden pb-12 pt-20">
         <div className="bloom-container">
           <div className="bloom bloom-purple"></div>
           <div className="bloom bloom-cyan"></div>
@@ -206,8 +206,9 @@ const App: React.FC = () => {
           <div className="hex-mesh-static"></div>
         </div>
         <FloatingHexagons />
+        
         <div className="relative z-10 flex flex-col items-center justify-center px-6">
-          <div className="flex flex-col items-center logo-glow-wrapper mb-12">
+          <div className="flex flex-col items-center logo-glow-wrapper mb-8">
             <svg width="280" height="110" viewBox="0 0 340 130">
               <defs>
                 <linearGradient id="bmsGrad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -219,20 +220,24 @@ const App: React.FC = () => {
             </svg>
             <p className="monitor-text-sharp uppercase text-2xl">Monitor</p>
           </div>
+        </div>
+
+        <div className="relative z-20 flex flex-col items-center gap-12 w-full px-6">
           <button 
             onClick={() => setView('device-list')}
-            className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-4xl text-neonCyan active:scale-90 transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)]"
+            className="w-24 h-24 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-4xl text-neonCyan active:scale-90 transition-all shadow-[0_0_30px_rgba(6,182,212,0.4)]"
           >
             <i className="fa-solid fa-power-off"></i>
           </button>
-        </div>
-        <div className="absolute bottom-10 w-full flex flex-col items-center z-20 pointer-events-none">
-           <span className="text-[12px] font-cyber text-white/80 tracking-[0.8em] uppercase font-bold">
+          
+          <div className="text-center">
+            <span className="text-[12px] font-cyber text-white/80 tracking-[0.8em] uppercase font-bold block">
               CV Creation System
-           </span>
+            </span>
+          </div>
         </div>
-        <button onClick={() => devices.length > 0 ? setView('device-list') : setView('add-device')} className="absolute inset-0 z-[15] cursor-default bg-transparent outline-none" />
-        <div className="bottom-blue-line"></div>
+        
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-blue-500 shadow-[0_0_20px_#3b82f6] rounded-t-full"></div>
       </div>
     );
   }
