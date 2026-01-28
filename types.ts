@@ -1,3 +1,4 @@
+
 export interface BMSData {
   voltage: number;
   current: number;
@@ -7,6 +8,10 @@ export interface BMSData {
   temp_battery: number;
   temp_mos: number;
   temp_box: number;
+  last_seen?: number;
+  capacity_total?: number;
+  capacity_remain?: number;
+  cells?: number[];
 }
 
 export interface Device {
@@ -15,4 +20,9 @@ export interface Device {
   lastConnected?: number;
 }
 
-export type AppView = 'splash' | 'home' | 'device-list' | 'add-device' | 'dashboard';
+export interface UserProfile {
+  uid: string;
+  email: string | null;
+}
+
+export type AppView = 'splash' | 'auth' | 'home' | 'device-list' | 'add-device' | 'dashboard';

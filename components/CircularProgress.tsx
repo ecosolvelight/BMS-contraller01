@@ -7,17 +7,18 @@ interface CircularProgressProps {
 }
 
 const CircularProgress: React.FC<CircularProgressProps> = ({ 
-  value, 
+  value = 0, 
   size = 200, 
   strokeWidth = 14 
 }) => {
+  const safeValue = isNaN(value) ? 0 : Math.max(0, Math.min(100, value));
   const radius = (size - strokeWidth) / 2;
   const circumference = radius * 2 * Math.PI;
-  const offset = circumference - (value / 100) * circumference;
+  const offset = circumference - (safeValue / 100) * circumference;
 
   const getStyle = () => {
-    if (value > 60) return { color: '#10b981', glow: 'rgba(16, 185, 129, 0.2)' };
-    if (value > 20) return { color: '#3b82f6', glow: 'rgba(59, 130, 246, 0.2)' };
+    if (safeValue > 60) return { color: '#10b981', glow: 'rgba(16, 185, 129, 0.2)' };
+    if (safeValue > 20) return { color: '#3b82f6', glow: 'rgba(59, 130, 246, 0.2)' };
     return { color: '#ef4444', glow: 'rgba(239, 68, 68, 0.2)' };
   };
 
@@ -26,7 +27,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   return (
     <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
       <div 
-        className="absolute inset-0 rounded-full blur-2xl opacity-10 scale-110"
+        className="absolute inset-0 rounded-full blur-3xl opacity-20 scale-125 transition-all duration-1000"
         style={{ backgroundColor: style.color }}
       />
       
@@ -35,7 +36,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          stroke="#F1F5F9"
+          stroke="#F8FAFC"
           strokeWidth={strokeWidth}
           fill="transparent"
         />
@@ -50,21 +51,21 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           strokeLinecap="round"
           fill="transparent"
           style={{ 
-            transition: 'stroke-dashoffset 1s cubic-bezier(0.16, 1, 0.3, 1)',
-            filter: `drop-shadow(0 0 6px ${style.glow})`
+            transition: 'stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
+            filter: `drop-shadow(0 0 8px ${style.glow})`
           }}
         />
       </svg>
       
       <div className="absolute flex flex-col items-center">
-        <span className="text-5xl font-sans font-black text-slate-800 tracking-tighter leading-none">
-          {Math.round(value)}
-          <span className="text-base ml-0.5 text-slate-300 font-bold">%</span>
+        <span className="text-6xl font-sans font-black text-slate-800 tracking-tighter leading-none">
+          {Math.round(safeValue)}
+          <span className="text-xl ml-1 text-slate-300 font-bold">%</span>
         </span>
-        <div className="w-8 h-1 bg-slate-100 rounded-full my-3">
-           <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${value}%`, backgroundColor: style.color }}></div>
+        <div className="w-12 h-1.5 bg-slate-100 rounded-full my-4 overflow-hidden">
+           <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${safeValue}%`, backgroundColor: style.color }}></div>
         </div>
-        <span className="text-[8px] uppercase tracking-[0.4em] font-cyber text-slate-400 font-black">
+        <span className="text-[10px] uppercase tracking-[0.5em] font-cyber text-slate-400 font-black">
           Capacity
         </span>
       </div>
