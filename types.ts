@@ -6,12 +6,16 @@ export interface BMSData {
   uptime: number;
   cycles: number;
   temp_battery: number;
-  temp_mos: number;
+  temp_power: number;
   temp_box: number;
   last_seen?: number;
   capacity_total?: number;
   capacity_remain?: number;
-  cells?: number[];
+  cell_count?: number;
+  cells: number[]; // Transformed from cell_voltages object
+  warning_text?: string;
+  warning_flags?: number;
+  status_flags?: number;
 }
 
 export interface Device {
